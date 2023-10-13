@@ -1,0 +1,20 @@
+<div class="flex flex-col">
+    <input 
+        id="{{ handle }}"
+        name="{{ handle }}"
+        type="range"
+        value="{{ value }}"
+        min="{{ min ?? 0 }}"
+        max="{{ max ?? 100 }}"
+        step="{{ step ?? 1 }}" 
+        {{ js_attributes }}
+        {{ (validate | contains:required) ?= 'required' }}
+        class="w-full h-2 bg-secondary rounded-full appearance-none cursor-pointer accent-primary">
+
+    <div class="flex justify-between mt-2">
+        <span class="text-base text-muted-foreground">{{ min ?? 0 }}</span>
+        <div x-show="{{ handle }} > 0">
+            <span class="text-base text-muted-foreground" x-text="{{ handle }}"></span>
+        </div>
+    </div>
+</div>

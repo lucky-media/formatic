@@ -1,0 +1,9 @@
+<x-block form_size="{form_size}">
+
+    <x-heading>{{ title }}</x-heading>
+
+    <div class="shrink-0 bg-border h-[1px] w-full my-6"></div>
+    {{ if page_description }}
+        <p class="text-muted-foreground text-lg">{{ page_description }}</p>
+    {{ /if }}
+</x-block>

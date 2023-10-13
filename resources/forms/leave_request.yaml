@@ -1,0 +1,9 @@
+title: 'Leave Request'
+email:
+  -
+    id: lmphyzza
+    to: info@test.com
+    from: '{{ email }}'
+    subject: 'New Form Submission'
+    html: emails/form_sender
+    text: emails/form_text

@@ -1,0 +1,5 @@
+<x-block form_size="{form_size}">
+    {{ if video | is_embeddable }}
+        <iframe src="{{ video | embed_url }}" frameborder="0" allowfullscreen class="w-full aspect-video"></iframe>
+    {{ /if }}
+</x-block>

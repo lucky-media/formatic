@@ -1,0 +1,28 @@
+<div x-data="fileViewer"
+    class="flex flex-col items-center justify-center rounded-lg border border-dashed hover:border-primary border-input pointer-events-none transition-colors px-6 py-10">
+    <div class="text-center">
+        {{ svg src="picture" class="mx-auto h-12 w-12 text-gray-300" }}
+        <div class="mt-4 flex flex-row items-center text-sm">
+            <x-button as="label" variant="outline" for="{{ handle }}" class="pointer-events-auto cursor-pointer">
+                Upload a file
+                <input type="file" class="sr-only" id="{{ handle }}"
+                    name="{{ handle }}{{ if max_files !== 1 }}[]{{ /if }}" @change="filesUploaded"
+                    {{ js_attributes }} {{ if max_files !== 1 }}multiple{{ /if }}
+                    {{ (validate | contains:required) ?= 'required' }}>
+            </x-button>
+            <p class="pl-2 text-muted-foreground">or drag and drop</p>
+        </div>
+        <p class="mt-2 text-xs text-muted-foreground">PNG, JPG, GIF up to 10MB</p>
+    </div>
+
+    <div class="w-4/5 mt-4" x-show="files.length > 0" x-transition>
+        <p class="mb-2 text-xs text-muted-foreground">Selected Files</p>
+        <template x-for="file in files">
+            <div class="flex flex-row items-center justify-between rounded-lg border p-4">
+                <x-label as="p" x-text="file.name" />
+
+                <span class="text-[0.8rem] text-muted-foreground mt-1.5" x-text="file.size"></span>
+            </div>
+        </template>
+    </div>
+</div>

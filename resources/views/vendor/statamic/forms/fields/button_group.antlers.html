@@ -1,0 +1,15 @@
+<div @keydown.right="$focus.wrap().next()" @keydown.left="$focus.wrap().previous()"
+    class="flex items-center justify-start space-x-2">
+    {{ foreach:options as="option|label" }}
+        <div id="radio-{{ option }}" role="radio" :aria-checked="{{ handle }} === '{{ option }}'"
+            :tabindex="{{ handle }} === '{{ option }}' ? 0 : -1">
+            <input class="sr-only" id="radio-{{ option }}" name="{{ handle }}" value="{{ option }}" type="radio"
+                {{ js_attributes }} {{ (validate | contains:required) ?= 'required' }}>
+
+            <x-button x-bind:class="{handle} === '{option}' && 'border border-primary'" @click="{handle} = '{option}'"
+                type="button" size="none" variant="secondary" class="px-4 h-10">
+                {{ label }}
+            </x-button>
+        </div>
+    {{ /foreach:options }}
+</div>

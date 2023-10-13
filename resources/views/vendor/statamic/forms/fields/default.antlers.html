@@ -1,0 +1,11 @@
+<x-input
+    type="{{ input_type ?? 'text' }}"
+    id="{{ handle }}"
+    name="{{ handle }}"
+    value="{{ value }}"
+    {{ placeholder ?= 'placeholder="{placeholder}"' }}
+    {{ character_limit ?= 'maxlength="{character_limit}"' }}
+    {{ js_attributes }}
+    {{ (validate|contains:required)  ?= 'required' }}
+    {{ old ? 'value="{old}"' : 'value={value}' }}
+>

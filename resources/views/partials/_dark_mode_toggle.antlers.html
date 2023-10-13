@@ -1,0 +1,20 @@
+<div x-data aria-describedby="dark mode button group" class="absolute z-10 right-5 top-5">
+    <x-tabs>
+        <x-tabs.list>
+            <x-tabs.trigger name="dark">
+                {{ svg src="moon" class="w-4 h-4 stroke-current text-foreground dark:text-white shrink-0 mr-1.5" }}
+                <span>Dark</span>
+            </x-tabs.trigger>
+
+            <x-tabs.trigger name="light">
+                {{ svg src="sun" class="w-4 h-4 stroke-current text-foreground dark:text-white mr-1.5" }}
+                <span>Light</span>
+            </x-tabs.trigger>
+
+            <x-tabs.trigger name="auto">
+                {{ svg src="computer" class="w-4 h-4 stroke-current text-foreground dark:text-white mr-1.5" }}
+                <span>Auto</span>
+            </x-tabs.trigger>
+        </x-tabs.list>
+    </x-tabs>
+</div>

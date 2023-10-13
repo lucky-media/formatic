@@ -1,0 +1,51 @@
+<x-block form_size="{form_size}">
+    <div x-data="formatic({ validate_url: '{{ route:forms.validate :form="selected_form:handle" }}' })">
+        {{ form handle="{selected_form:handle}" js="alpine" x-ref="form" @submit.prevent="sendForm()" }}
+            <template x-if="success">
+                {{ if submit_options === 'thankyou_page' }}
+                    <x-alert class="mb-5">
+                        {{ svg src="check" class="w-6 h-6" }}
+                        <x-alert.title>{{ submit_title }}</x-alert.title>
+                        {{ if submit_description }}
+                            <x-prose class="mt-2">
+                                {{ submit_description }}
+                            </x-prose>
+                        {{ /if }}
+                    </x-alert>
+                {{ else }}
+                    <div class="hidden" x-init="() => { redirect_url = '{{ page_redirect_url }}' }">
+                    </div>
+                {{ /if }}
+            </template>
+            <template x-if="!success">
+                <div>
+                    {{ if show_sections }}
+                        {{ partial:partials.sets.formatic.form_sections }}
+                    {{ elseif enable_multistep }}
+                        {{ partial:partials.sets.formatic.form_multistep }}
+                    {{ else }}
+                        {{ partial:partials.sets.formatic.form_grid }}
+                    {{ /if }}
+                    {{ if required_fields_text }}
+                        <div class="my-4">
+                            <p class="text-destructive text-xs font-semibold">
+                                {{ required_fields_text }}
+                            </p>
+                        </div>
+                    {{ /if }}
+                    {{ if !enable_multistep }}
+                        <div class="sm:col-span-12">
+                            <x-button x-bind:disabled="sending" type="submit">
+                                <template x-if="sending">
+                                    <x-spinner />
+                                </template>
+                                Submit
+                            </x-button>
+                        </div>
+                    {{ /if }}
+                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                </div>
+            </template>
+        {{ /form }}
+    </div>
+</x-block>

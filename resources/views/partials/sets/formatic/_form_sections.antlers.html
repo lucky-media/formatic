@@ -1,0 +1,18 @@
+<div class="space-y-8">
+    {{ sections }}
+        <x-card>
+            <x-card.header>
+                <x-card.title>
+                    {{ display }}
+                </x-card.title>
+                <x-card.description>
+                    {{ instructions }}
+                </x-card.description>
+            </x-card.header>
+
+            <x-card.body class="w-full">
+                {{ partial:partials.sets.formatic.form_grid }}
+            </x-card.body>
+        </x-card>
+    {{ /sections }}
+</div>

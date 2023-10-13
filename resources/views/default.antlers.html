@@ -1,0 +1,27 @@
+{{ once }}
+    {{ push:styles }}
+        {{ partial:partials/theme_switcher }}
+    {{ /push:styles }}
+{{ /once }}
+
+{{ if darkmode_toggle }}
+    {{ partial:partials/dark_mode_toggle }}
+{{ else }}
+    {{ partial:partials/toggle_disabled }}
+{{ /if }}
+
+{{ if logo or logo_dark }}
+    {{ partial:partials/form_logo }}
+{{ /if }}
+
+{{ partial:partials/form_header }}
+
+{{ form_builder }}
+    {{ partial src="sets/{type}" }}
+{{ /form_builder }}
+
+{{ once }}
+    {{ push:scripts }}
+        <script src="/vendor/statamic/frontend/js/helpers.js"></script>
+    {{ /push:scripts }}
+{{ /once }}

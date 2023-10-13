@@ -1,0 +1,56 @@
+title: 'Block Sizes'
+fields:
+  -
+    handle: full_width
+    field:
+      default: false
+      type: toggle
+      display: 'Full Width'
+      icon: toggle
+      instructions: 'Toggle this to display block in full width.'
+      width: 33
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+  -
+    handle: block_size
+    field:
+      options:
+        sm: Small
+        base: Medium
+        container: Container
+      default: container
+      type: button_group
+      display: 'Block Size'
+      icon: button_group
+      width: 33
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+      validate:
+        - 'required_if:full_width,false'
+      always_save: true
+      unless:
+        full_width: 'equals true'
+  -
+    handle: block_align
+    field:
+      options:
+        left: Left
+        center: Center
+        right: Right
+      default: center
+      type: button_group
+      display: 'Align Block'
+      icon: button_group
+      width: 33
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+      if:
+        block_size: 'contains_any sm,base'
+        full_width: 'equals false'
+      always_save: true

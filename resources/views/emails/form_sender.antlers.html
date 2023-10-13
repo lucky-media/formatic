@@ -1,0 +1,75 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body
+    style="background-color:rgb(255,255,255);margin-top:auto;margin-bottom:auto;margin-left:auto;margin-right:auto;font-family:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji">
+    <table align="center" width="100%" role="presentation" cellSpacing="0" cellPadding="0" border="0"
+        style="max-width:37.5em;border-width:1px;border-style:solid;border-color:rgb(229,231,235);border-radius:0.25rem;margin-top:40px;margin-bottom:40px;margin-left:auto;margin-right:auto;padding:20px;width:465px">
+        <tbody>
+            <tr style="width:100%">
+                <td>
+                    <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation"
+                        style="margin-top:32px">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{ asset url="/assets/email_logo.jpg" }}
+                                        <img alt="logo" src="{{ permalink }}" width="150" height="70"
+                                            style="display:block;outline:none;border:none;text-decoration:none;margin-top:0px;margin-bottom:0px;margin-left:auto;margin-right:auto" />
+                                    {{ /asset }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h1
+                        style="color:rgb(0,0,0);font-size:24px;font-weight:700;text-align:center;padding:0px;margin-top:30px;margin-bottom:30px;margin-left:0px;margin-right:0px">
+                        New Form Submission
+                    </h1>
+                    <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation"
+                        style="margin-top:32px">
+                        <tbody>
+                            {{ fields }}
+                                {{ if value }}
+                                    <tr>
+                                        <td>
+                                            <p
+                                                style="font-size:1rem;line-height:1.5rem;margin:16px 0;color:rgb(9,9,11);font-weight:700">
+                                                {{ display }}
+                                            </p>
+                                            <p
+                                                style="font-size:0.875rem;line-height:1.25rem;margin:16px 0;color:rgb(113,113,122);font-weight:700">
+                                                {{ if (value | is_array) }}
+                                                    <ul>{{ value }}
+                                                        <li>
+                                                            {{ value }}
+                                                        </li>
+                                                        {{ /value }}
+                                                    </ul>
+                                                {{ else }}
+                                                    {{ value }}
+                                                {{ /if }}
+                                            </p>
+                                            <hr
+                                                style="width:100%;border:none;border-top:1px solid #eaeaea;border-width:1px;border-style:solid;border-color:rgb(229,231,235);margin-left:0px;margin-right:0px" />
+                                        </td>
+                                    </tr>
+                                {{ /if }}
+                            {{ /fields }}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    window.requiredSteps = '{{ section_formatter :items="sections" }}'
+</script>
+
+<x-steps class="mb-2">
+    <x-steps.list>
+        {{ sections }}
+            <p class="sr-only">
+                Step {{ index + 1 }} out of
+                {{ sections | length /}}
+            </p>
+            <x-steps.header title="{display}" description="{instructions}" value="{index + 1}" />
+        {{ /sections }}
+    </x-steps.list>
+
+    {{ sections }}
+        <x-steps.content class="mt-6" value="{index + 1}">
+            <x-card>
+                <x-card.body class="w-full pt-6">
+                    {{ partial:partials.sets.formatic.form_grid }}
+                </x-card.body>
+
+                <x-card.footer>
+
+                    <div class="flex justify-between">
+                        <template x-if="currentStep > 1">
+                            <x-button type="button" variant="secondary" @click="prev()">
+                                Previous
+                            </x-button>
+                        </template>
+
+                        <x-button x-bind:class="currentStep === 1 && 'ml-auto'" x-bind:disabled="sending" type="button"
+                            @click="next()">
+                            <template x-if="sending">
+                                <x-spinner />
+                            </template>
+                            {{ last ? 'Submit' : 'Next' }}
+                        </x-button>
+                    </div>
+                </x-card.footer>
+            </x-card>
+        </x-steps.content>
+    {{ /sections }}
+</x-steps>

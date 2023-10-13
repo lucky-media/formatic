@@ -1,0 +1,137 @@
+title: Builder
+fields:
+  -
+    handle: form_builder
+    field:
+      collapse: false
+      previews: false
+      fullscreen: true
+      sets:
+        content:
+          display: Content
+          instructions: null
+          icon: text-formatting-all-caps
+          sets:
+            text:
+              display: Text
+              instructions: null
+              icon: text-formatting-initial-letter
+              fields:
+                -
+                  handle: content
+                  field:
+                    buttons:
+                      - h2
+                      - h3
+                      - bold
+                      - italic
+                      - unorderedlist
+                      - orderedlist
+                      - removeformat
+                      - quote
+                      - anchor
+                      - horizontalrule
+                      - alignleft
+                      - aligncenter
+                      - alignright
+                    smart_typography: false
+                    save_html: false
+                    inline: false
+                    toolbar_mode: fixed
+                    reading_time: false
+                    word_count: false
+                    fullscreen: true
+                    allow_source: false
+                    enable_input_rules: true
+                    enable_paste_rules: true
+                    remove_empty_nodes: false
+                    antlers: false
+                    link_noopener: false
+                    link_noreferrer: false
+                    target_blank: false
+                    always_show_set_button: false
+                    collapse: false
+                    previews: true
+                    type: bard
+                    display: Content
+                    icon: bard
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+            image:
+              display: Image
+              instructions: null
+              icon: media-image-picture-orientation
+              fields:
+                -
+                  handle: image
+                  field:
+                    max_files: 1
+                    mode: list
+                    container: assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: Image
+                    icon: assets
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+            video:
+              display: Video
+              instructions: null
+              icon: media-webcam-video
+              fields:
+                -
+                  handle: video
+                  field:
+                    type: video
+                    display: Video
+                    icon: video
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                    validate:
+                      - required
+            embed:
+              display: Embed
+              instructions: null
+              icon: media-image-photo-focus-frame
+              fields:
+                -
+                  handle: embed
+                  field:
+                    antlers: false
+                    type: textarea
+                    display: Embed
+                    icon: textarea
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    hide_display: false
+                    validate:
+                      - required
+        forms:
+          display: Forms
+          instructions: null
+          icon: text-formatting-type-cursor
+          sets:
+            formatic:
+              display: Formatic
+              instructions: null
+              icon: form-text-field
+              fields:
+                -
+                  import: formatic
+      type: replicator
+      display: 'Form Builder'
+      icon: replicator
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false

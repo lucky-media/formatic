@@ -1,0 +1,21 @@
+---
+sizes: 
+  small: 'w-32'
+  medium: 'w-64'
+  large: 'w-96'
+---
+
+<x-block form_size="{form_size}">
+    <div class="{{ view:sizes[logo_size] }}" x-data>
+        {{ if logo }}
+            <template x-if="$store.theme.mode === 'light' || $store.theme.mode === 'auto'">
+                {{ partial:components/picture :image="logo" class="w-full h-auto" }}
+            </template>
+        {{ /if }}
+        {{ if logo_dark }}
+            <template x-if="$store.theme.mode === 'dark'">
+                {{ partial:components/picture :image="logo_dark" class="w-full h-auto" }}
+            </template>
+        {{ /if }}
+    </div>
+</x-block>

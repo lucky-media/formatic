@@ -1,0 +1,262 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: 'Personal Details'
+        fields:
+          -
+            handle: first_name
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'First Name'
+              icon: text
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+          -
+            handle: last_name
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Last Name'
+              icon: text
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: birth_date
+            field:
+              mode: single
+              inline: false
+              full_width: false
+              columns: 1
+              rows: 1
+              time_enabled: false
+              time_seconds_enabled: false
+              type: date
+              display: 'Birth Date'
+              icon: date
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: communication_preference
+            field:
+              options:
+                phone: Phone
+                email: Email
+              default: email
+              type: button_group
+              display: 'Communication Preference'
+              icon: button_group
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: phone
+            field:
+              input_type: tel
+              antlers: false
+              type: text
+              display: Phone
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              if:
+                communication_preference: 'equals phone'
+              validate:
+                - 'required_if:communication_preference,phone'
+          -
+            handle: email
+            field:
+              input_type: email
+              antlers: false
+              type: text
+              display: Email
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              if:
+                communication_preference: 'equals email'
+              validate:
+                - 'required_if:communication_preference,email'
+          -
+            handle: address
+            field:
+              type: section
+              display: Address
+              icon: section
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: street_address
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Street Address'
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: street_address_line_2
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Street Address Line 2'
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: city
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: City
+              icon: text
+              width: 33
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: province
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Province
+              icon: text
+              width: 33
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: postal_code
+            field:
+              input_type: number
+              antlers: false
+              type: text
+              display: 'Postal Code'
+              icon: text
+              width: 33
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+      -
+        display: 'Application Details'
+        fields:
+          -
+            handle: referral
+            field:
+              options:
+                google: Google
+                walkin: Walk-In
+                social: 'Social Media'
+                newspapper: 'Newspapper Ad'
+                other: 'Other ( Please Specify )'
+              inline: false
+              grid_options: grid-2
+              type: checkboxes
+              display: 'How were you referred to us ?'
+              icon: checkboxes
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+          -
+            handle: referral_other
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Other
+              icon: text
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              if:
+                referral: 'contains other'
+              validate:
+                - 'required_if:referral,other'
+          -
+            handle: resume
+            field:
+              max_files: 1
+              mode: list
+              container: assets
+              restrict: false
+              allow_uploads: true
+              show_filename: true
+              show_set_alt: true
+              type: assets
+              display: Resume
+              icon: assets
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: motivation_letter
+            field:
+              antlers: false
+              type: textarea
+              display: 'Motivation Letter'
+              icon: textarea
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+          -
+            handle: training_and_certifications
+            field:
+              type: list
+              display: 'Training and Certifications'
+              icon: list
+              instructions: 'Please use the following format: Training Name - Date'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: references
+            field:
+              type: list
+              display: References
+              icon: list
+              instructions: 'Please use the following format: Reference Name - Contact or Email'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false

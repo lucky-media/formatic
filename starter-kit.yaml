@@ -1,0 +1,33 @@
+export_paths:
+  - app/Tags
+  - app/Services/RetrieveUserPassword.php
+  - app/Providers/AppServiceProvider.php
+  - app/Http/Controllers/FormValidationController.php
+  - content/assets
+  - content/trees
+  - content/globals/formatic.yaml
+  - content/collections/pages.yaml
+  - content/collections/pages/employment-application.md
+  - config/statamic/assets.php
+  - config/statamic/protect.php
+  - resources/forms/employment_application.yaml
+  - resources/fieldsets
+  - resources/blueprints/globals/formatic.yaml
+  - resources/blueprints/assets/assets.yaml
+  - resources/blueprints/collections/pages/formatic.yaml
+  - resources/blueprints/forms/employment_application.yaml
+  - resources/svg
+  - resources/css
+  - resources/js
+  - resources/views
+  - routes/web.php
+  - public/build/
+  - public/assets/email_logo.jpg
+  - package.json
+  - tailwind.config.js
+  - vite.config.js
+  - postcss.config.js
+  - README.md
+dependencies:
+  marcorieser/tailwind-merge-statamic: ^0.2.0
+  stillat/antlers-components: ^2.0

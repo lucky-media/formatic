@@ -1,0 +1,9 @@
+{
+    "name": "lucky-media/formatic",
+    "extra": {
+        "statamic": {
+            "name": "Formatic",
+            "description": "Formatic starter kit"
+        }
+    }
+}

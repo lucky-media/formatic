@@ -1,0 +1,150 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: 'Personal Details'
+        instructions: 'Please enter your personal details'
+        fields:
+          -
+            handle: name
+            field:
+              input_type: text
+              placeholder: Name
+              antlers: false
+              type: text
+              display: Name
+              icon: text
+              instructions: 'Please enter your name'
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+              autocomplete: name
+          -
+            handle: email
+            field:
+              input_type: email
+              placeholder: 'Your Email'
+              antlers: false
+              type: text
+              display: Email
+              icon: text
+              instructions: 'Please enter your email'
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+                - 'email:dns'
+              autocomplete: email
+          -
+            handle: supervisor
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Supervisor
+              icon: text
+              instructions: 'Who is your supervisor ?'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+      -
+        display: 'Leave Reason'
+        instructions: 'Please explain your leave reasons'
+        fields:
+          -
+            handle: reason
+            field:
+              options:
+                vacation: Vacation
+                leave: Leave
+                absence: Absence
+                other: Other
+              inline: false
+              cast_booleans: false
+              type: radio
+              display: Reason
+              icon: radio
+              instructions: 'What is the leave reason ?'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              validate:
+                - required
+          -
+            handle: other_reason
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: 'Other Reason'
+              icon: text
+              instructions: 'Please explain the leave reason.'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+              if:
+                reason: 'contains other'
+              validate:
+                - 'required_if:reason,other'
+          -
+            handle: leave_start
+            field:
+              mode: single
+              inline: false
+              full_width: false
+              columns: 1
+              rows: 1
+              time_enabled: false
+              time_seconds_enabled: false
+              type: date
+              display: 'Leave Start'
+              icon: date
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: leave_end
+            field:
+              mode: single
+              inline: false
+              full_width: false
+              columns: 1
+              rows: 1
+              time_enabled: false
+              time_seconds_enabled: false
+              type: date
+              display: 'Leave End'
+              icon: date
+              width: 50
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false
+          -
+            handle: notice
+            field:
+              type: section
+              display: Notice!
+              icon: section
+              instructions: |-
+                The process could take up to two weeks to process.
+                For every change in the steps, you will be informed via email.
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false

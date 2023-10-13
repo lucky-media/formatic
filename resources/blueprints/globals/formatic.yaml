@@ -1,0 +1,17 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: allowed_passwords
+            field:
+              type: list
+              display: 'Allowed Passwords'
+              icon: list
+              instructions: 'A list of allowed passwords to be used in Password Protected pages.'
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              hide_display: false

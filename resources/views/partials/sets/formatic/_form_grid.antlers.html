@@ -1,0 +1,40 @@
+<div class="grid md:grid-cols-12 gap-4">
+    {{ fields }}
+        {{ _widthClass = switch(
+                  (width == '100') => 'sm:col-span-12',
+                  (width == '75') => 'sm:col-span-9',
+                  (width == '66') => 'sm:col-span-8',
+                  (width == '50') => 'sm:col-span-6',
+                  (width == '33') => 'sm:col-span-4',
+                  (width == '25') => 'sm:col-span-3',
+                  () => 'w-full') }}
+        {{ if type !== 'spacer' }}
+            <template x-if="{{ show_field }}">
+                <div class="{{ _widthClass }}">
+                    <x-label for="{{ handle }}" class="mb-1">
+                        {{ display }}
+                        {{ if validate | contains('required') }}
+                            <sup class="text-destructive">*</sup>
+                        {{ /if }}
+                    </x-label>
+                    {{ if instructions && instructions_position === 'above' }}
+                        <p class="text-sm text-muted-foreground">
+                            {{ instructions }}
+                        </p>
+                    {{ /if }}
+                    <div class="my-2">
+                        {{ field }}
+                    </div>
+                    {{ if instructions && instructions_position === 'below' }}
+                        <p class="text-sm text-muted-foreground">
+                            {{ instructions }}
+                        </p>
+                    {{ /if }}
+                    <template x-if="errors.{{ handle }}">
+                        <p class="text-destructive" x-text="errors.{{ handle }}"></p>
+                    </template>
+                </div>
+            </template>
+        {{ /if }}
+    {{ /fields }}
+</div>

@@ -1,0 +1,21 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./flatpickr.css";
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    .embed iframe {
+        @apply aspect-video w-full;
+    }
+}
+
+[x-cloak] {
+    display: none;
+}

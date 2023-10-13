@@ -1,0 +1,45 @@
+title: Formatic
+fields:
+  -
+    handle: show_sections
+    field:
+      default: false
+      type: toggle
+      display: 'Show Sections'
+      icon: toggle
+      instructions: 'Split the form into sections ( cards )'
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+      unless:
+        enable_multistep: 'equals true'
+  -
+    handle: enable_multistep
+    field:
+      default: false
+      type: toggle
+      display: 'Enable Multistep'
+      icon: toggle
+      instructions: 'Toggle this to display the form in multi-step sections.'
+      width: 50
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+      unless:
+        show_sections: 'equals true'
+  -
+    handle: selected_form
+    field:
+      max_items: 1
+      type: form
+      display: 'Selected Form'
+      icon: form
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      hide_display: false
+      validate:
+        - required

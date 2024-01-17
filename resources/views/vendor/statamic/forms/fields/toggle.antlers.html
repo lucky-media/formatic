@@ -1,8 +1,16 @@
-<label class="relative inline-flex items-center cursor-pointer" :id="$id('{{ handle }}')">
+<label 
+    class="relative inline-flex items-center cursor-pointer" 
+    :id="$id('{{ handle }}')"
+    x-model="form.{{ handle }}"
+    @change="form.validate('{{ handle }}')"
+    :aria-invalid="form.invalid('{{ handle }}')"
+    {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}>
+    
     <input type="hidden" name="{{ handle }}" value="0">
     <input
         type="checkbox"
         name="{{ handle }}"
+        id="{{ handle }}"
         value="1" 
         class="sr-only peer"
         {{ js_attributes }} 

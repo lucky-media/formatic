@@ -29,13 +29,24 @@
                             </x-button>
                         </template>
 
-                        <x-button x-bind:class="currentStep === 1 && 'ml-auto'" x-bind:disabled="sending" type="button"
-                            @click="next()">
-                            <template x-if="sending">
-                                <x-spinner />
-                            </template>
-                            {{ last ? 'Submit' : 'Next' }}
-                        </x-button>
+                        <template x-if="!isLastStep()">
+                            <x-button x-bind:class="currentStep === 1 && 'ml-auto'" x-bind:disabled="form.processing"
+                                type="submit" @click="next()">
+                                <template x-if="form.processing">
+                                    <x-spinner />
+                                </template>
+                                Next
+                            </x-button>
+                        </template>
+
+                        <template x-if="isLastStep()">
+                            <x-button x-bind:disabled="form.processing" type="submit" @click="submit()">
+                                <template x-if="form.processing">
+                                    <x-spinner />
+                                </template>
+                                Submit
+                            </x-button>
+                        </template>
                     </div>
                 </x-card.footer>
             </x-card>

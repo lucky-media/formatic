@@ -1,12 +1,11 @@
-export const Formatic = ({ validate_url }) => ({
-    error: false,
-    errors: [],
-    sending: false,
-    success: false,
+export const Formatic = () => ({
     steps: [],
     currentStep: 1,
     redirect_url: null,
     submit_url: null,
+    success: false,
+    form: "",
+
     init() {
         this.$nextTick(() => {
             if (
@@ -19,74 +18,92 @@ export const Formatic = ({ validate_url }) => ({
             this.steps = JSON.parse(window.requiredSteps);
         });
 
-        this.submit_url = validate_url;
+        this.submit_url = window.location.href;
+
+        this.form = this.$form(
+            "post",
+            this.$refs.form.getAttribute("action"),
+            JSON.parse(this.$refs.form.getAttribute("x-data")).dynamic_form
+        );
     },
-    sendForm: async function () {
-        this.sending = true;
-        const formData = new FormData(this.$refs.form);
 
-        // Post the form.
-        return fetch(this.resolveFormUrl(), {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            },
-            method: "POST",
-            body: new FormData(this.$refs.form),
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                if (
-                    json["success"] &&
-                    this.isMultiStep() &&
-                    !this.isLastStep()
-                ) {
-                    this.errors = [];
-                    this.error = false;
-                    this.sending = false;
-
-                    return;
-                }
-
-                if (json["success"]) {
-                    this.errors = [];
-                    this.success = true;
-                    this.error = false;
-                    this.sending = false;
-                    this.$refs.form.reset();
-
-                    setTimeout(() => {
-                        this.success = false;
-
-                        if (this.redirect_url) {
-                            window.location.href = this.redirect_url;
-                        }
-                    }, 1000);
-                }
-
-                if (json["error"]) {
-                    this.sending = false;
-                    this.error = true;
-                    this.success = false;
-                    this.errors = json["error"];
-                }
-            })
-            .catch((err) => {
-                console.log("err", err);
-                this.sending = false;
+    submit: async function () {
+        try {
+            const response = await this.form.submit({
+                headers: { "Content-Type": "multipart/form-data" },
             });
+
+            if (
+                response.status === 200 &&
+                this.isMultiStep() &&
+                !this.isLastStep()
+            ) {
+                this.form.errors = {};
+
+                return;
+            }
+
+            if (response.status === 200) {
+                this.form.reset();
+                this.form.errors = {};
+                this.success = true;
+
+                setTimeout(() => {
+                    this.success = false;
+
+                    if (this.redirect_url) {
+                        window.location.href = this.redirect_url;
+                    }
+
+                    if (this.isMultiStep()) {
+                        location.reload();
+                    }
+                }, 1000);
+            }
+        } catch (error) {
+            if (error.response && error.response.data.errors) {
+                this.form.errors = error.response.data.errors;
+            }
+        }
     },
+
     prev() {
         this.currentStep--;
     },
     next: async function () {
-        await this.sendForm();
+        const isValid = this.validateFields();
 
-        if (!(this.error && this.hasRequiredFields())) {
-            this.currentStep++;
-            this.errors = [];
+        // Move to the next step only if the form is valid
+        if (isValid) {
+            if (!(this.form.errors && this.hasRequiredFields())) {
+                this.currentStep++;
+                this.form.errors = {};
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
+    },
+    validateFields() {
+        this.form.errors = {};
 
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const requiredFields = Object.values(this.steps[this.currentStep - 1]);
+
+        requiredFields.forEach((field) => {
+            // Grab inputs
+            const input = document.querySelector(`[name="${field}"]`);
+
+            // Format field's error message
+            let formattedErrorMessage = `The ${field
+                .replace(/_/g, " ")
+                .replace(/\b\w/g, (c) => c.toUpperCase())} field is required.`;
+
+            // Add error to errors object (if input is empty)
+            if (input && input.offsetParent && !this.form[field]) {
+                this.form.errors[field] = formattedErrorMessage;
+            }
+        });
+
+        return !Object.keys(this.form.errors).length;
     },
     isMultiStep() {
         return this.steps.length > 0;
@@ -103,7 +120,7 @@ export const Formatic = ({ validate_url }) => ({
     },
     hasRequiredFields() {
         const fields = Object.values(this.steps[this.currentStep - 1]).filter(
-            (field) => (this.errors.hasOwnProperty(field) ? true : false)
+            (field) => (this.form.errors.hasOwnProperty(field) ? true : false)
         );
 
         return fields.length > 0;

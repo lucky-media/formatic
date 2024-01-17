@@ -1,11 +1,18 @@
-<fieldset class="flex {{ inline ? 'space-x-4': 'flex-col space-y-1'}}" aria-describedBy="{{ handle }}">
+<fieldset 
+    class="flex {{ inline ? 'space-x-4': 'flex-col space-y-1' }}" 
+    x-model="form.{{ handle }}"
+    :aria-invalid="form.invalid('{{ handle }}')"
+    {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}>
+    
     {{ foreach:options as="option|label" }}
-        <div>
+        <div id="form.{{ handle }}-{{ index }}" role="radio" :aria-checked="form.{{ handle }} === '{{ option }}'" 
+            :tabindex="form.{{ handle }} === '{{ option }}' ? 0 : -1">
             <input
                 type="radio"
                 id="{{ handle }}-{{ index }}"
                 name="{{ handle }}"
                 value="{{ option }}"
+                @change="form.validate('{{ handle }}')"
                 class="h-4 w-4 rounded-full bg-transparent border border-primary text-primary focus:border-input focus:ring-background focus:ring-offset-background ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 {{ js_attributes }}
                 {{ (value == option) ?= 'checked' }}

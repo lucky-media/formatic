@@ -1,14 +1,18 @@
 <div x-data="fileViewer"
-    class="flex flex-col items-center justify-center rounded-lg border border-dashed hover:border-primary border-input pointer-events-none transition-colors px-6 py-10">
+    class="flex flex-col items-center justify-center px-6 py-10 transition-colors border border-dashed rounded-lg pointer-events-none hover:border-primary border-input">
     <div class="text-center">
-        {{ svg src="picture" class="mx-auto h-12 w-12 text-gray-300" }}
-        <div class="mt-4 flex flex-row items-center text-sm">
-            <x-button as="label" variant="outline" for="{{ handle }}" class="pointer-events-auto cursor-pointer">
+        {{ svg src="picture" class="w-12 h-12 mx-auto text-gray-300" }}
+        <div class="flex flex-row items-center mt-4 text-sm">
+            <x-button as="label" variant="outline" for="{{ handle }}" class="cursor-pointer pointer-events-auto">
                 Upload a file
-                <input type="file" class="sr-only" id="{{ handle }}"
-                    name="{{ handle }}{{ if max_files !== 1 }}[]{{ /if }}" @change="filesUploaded"
-                    {{ js_attributes }} {{ if max_files !== 1 }}multiple{{ /if }}
-                    {{ (validate | contains:required) ?= 'required' }}>
+                <input
+                    type="file"
+                    class="sr-only"
+                    id="{{ handle }}"
+                    @change="filesUploaded; form.{{ handle }} = Object.values($event.target.files); form.validateFiles('{{ handle }}')"
+                    :aria-invalid="form.invalid('{{ handle }}')"
+                    name="{{ handle }}{{ if max_files !== 1 }}[]{{ /if }}"
+                    {{ if max_files !== 1 }}multiple{{ /if }} {{ (validate | contains:required) ?= 'required' }}>
             </x-button>
             <p class="pl-2 text-muted-foreground">or drag and drop</p>
         </div>
@@ -18,7 +22,7 @@
     <div class="w-4/5 mt-4" x-show="files.length > 0" x-transition>
         <p class="mb-2 text-xs text-muted-foreground">Selected Files</p>
         <template x-for="file in files">
-            <div class="flex flex-row items-center justify-between rounded-lg border p-4">
+            <div class="flex flex-row items-center justify-between p-4 border rounded-lg">
                 <x-label as="p" x-text="file.name" />
 
                 <span class="text-[0.8rem] text-muted-foreground mt-1.5" x-text="file.size"></span>

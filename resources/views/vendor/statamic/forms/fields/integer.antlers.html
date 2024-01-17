@@ -1,5 +1,5 @@
-<div class="flex flex-row items-center" aria-describedby="{{ handle }}">
-    <x-button @click="{handle}--" type="button" class="w-8 h-8 shrink-0 rounded-full" size="icon" variant="outline">
+<div class="flex flex-row items-center">
+    <x-button @click="form.{handle}--" type="button" class="w-8 h-8 shrink-0 rounded-full" size="icon" variant="outline">
         {{ svg src="minus" class="w-4 h-4 fill-current dark:text-white" }}
         <span class="sr-only">Decrease</span>
     </x-button>
@@ -13,16 +13,20 @@
             name="{{ handle }}"
             type="number"
             min="0"
-            {{ old ? 'value="{old}"' : 'value={value}' }}
+            x-model="form.{{ handle }}"
+            @change="form.validate('{{ handle }}')"
+            :aria-invalid="form.invalid('{{ handle }}')"
+            :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}') }"
+            {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}
+            {{ old ? 'value="{old}"' : 'value="{value}"' }}
             {{ js_attributes }}
             {{ (validate | contains:required) ?= 'required' }}
-            type="number"
             class="absolute w-full left-0 bg-background font-semibold px-4 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none outline-none border-background focus:border-none"
-            x-init="$watch('{{ handle }}', (value) => {{ handle }} = value < 0 ? 0 : value)"
+            x-init="$watch('form.{{ handle }}', (value) => form.{{ handle }} = value < 0 ? 0 : value)"
         >
     </div>
 
-    <x-button tabindex="0" @click="{handle}++" type="button" class="w-8 h-8 shrink-0 rounded-full" size="icon" variant="outline">
+    <x-button tabindex="0" @click="form.{handle}++" type="button" class="w-8 h-8 shrink-0 rounded-full" size="icon" variant="outline">
         {{ svg src="plus" class="w-4 h-4 fill-current dark:text-white" }}
         <span class="sr-only">Increase</span>
     </x-button>

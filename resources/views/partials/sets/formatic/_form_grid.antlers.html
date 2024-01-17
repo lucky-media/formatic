@@ -1,4 +1,4 @@
-<div class="grid md:grid-cols-12 gap-4">
+<div class="grid gap-4 md:grid-cols-12">
     {{ fields }}
         {{ _widthClass = switch(
                   (width == '100') => 'sm:col-span-12',
@@ -30,8 +30,8 @@
                             {{ instructions }}
                         </p>
                     {{ /if }}
-                    <template x-if="errors.{{ handle }}">
-                        <p class="text-destructive" x-text="errors.{{ handle }}"></p>
+                    <template x-if="form.invalid('{{ handle }}')">
+                        <p class="text-sm text-destructive" x-text="form.errors.{{ handle }}"></p>
                     </template>
                 </div>
             </template>

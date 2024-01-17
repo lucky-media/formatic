@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\FormValidationController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +10,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::post('!/forms/{form}/validate', FormValidationController::class)->name('forms.validate');
 
 // Route::statamic('example', 'example-view', [
 //    'title' => 'Example'

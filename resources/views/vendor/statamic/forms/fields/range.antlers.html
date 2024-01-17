@@ -7,14 +7,18 @@
         min="{{ min ?? 0 }}"
         max="{{ max ?? 100 }}"
         step="{{ step ?? 1 }}" 
+        x-model="form.{{ handle }}"
+        @change="form.validate('{{ handle }}')"
+        :aria-invalid="form.invalid('{{ handle }}')"
+        :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}') }"
         {{ js_attributes }}
         {{ (validate | contains:required) ?= 'required' }}
         class="w-full h-2 bg-secondary rounded-full appearance-none cursor-pointer accent-primary">
 
     <div class="flex justify-between mt-2">
         <span class="text-base text-muted-foreground">{{ min ?? 0 }}</span>
-        <div x-show="{{ handle }} > 0">
-            <span class="text-base text-muted-foreground" x-text="{{ handle }}"></span>
+        <div x-show="form.{{ handle }} > 0">
+            <span class="text-base text-muted-foreground" x-text="form.{{ handle }}"></span>
         </div>
     </div>
 </div>

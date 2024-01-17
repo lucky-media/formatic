@@ -1,6 +1,7 @@
 // This is all you.
 import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
+import precognition from "laravel-precognition-alpine";
 
 import { ListInput } from "./form/ListInput";
 import { DatePicker } from "./form/DatePicker";
@@ -11,7 +12,7 @@ import { Theme } from "./ui/Theme";
 window.Alpine = Alpine;
 
 // Plugins
-Alpine.plugin(focus);
+Alpine.plugin([focus, precognition]);
 
 // Form Components
 Alpine.data("formatic", Formatic);

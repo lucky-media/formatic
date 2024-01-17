@@ -10,6 +10,9 @@ export const FileViewer = () => ({
                 size: this.formatBytes(file.size),
             };
         });
+
+        this.form[event.target.id] = Object.values(event.target.files);
+        this.form.validate(event.target.id);
     },
     formatBytes(x) {
         let l = 0,

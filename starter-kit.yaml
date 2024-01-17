@@ -2,7 +2,6 @@ export_paths:
   - app/Tags
   - app/Services/RetrieveUserPassword.php
   - app/Providers/AppServiceProvider.php
-  - app/Http/Controllers/FormValidationController.php
   - content/assets
   - content/trees
   - content/globals/formatic.yaml

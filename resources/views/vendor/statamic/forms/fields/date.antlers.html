@@ -8,7 +8,10 @@
             maxDate: '{{ latest_date ? latest_date : null }}',
             id: '{{ handle }}',
         })" 
-        x-model="{{ handle }}.date"
+        x-model="form.{{ handle }}.date"
+        @change="form.validate('{{ handle }}.date'); handleChange('{{ handle }}.date')"
+        :aria-invalid="form.invalid('{{ handle }}.date')"
+        :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}.date') }"
         name="{{ handle }}[date]"
         type="text"
         {{ (validate | contains:required) ?= 'required' }}
@@ -24,7 +27,10 @@
             <x-input
                 id="{{ handle }}[time]"
                 name="{{ handle }}[date]"
-                x-model="{{ handle }}.time"
+                x-model="form.{{ handle }}.time"
+                @change="form.validate('{{ handle }}.time')"
+                :aria-invalid="form.invalid('{{ handle }}.time')"
+                x-bind:class="form.invalid('{{ handle }}.time') && 'border-red-600 focus-visible:border-red-600'"
                 @click="$el.innerValue = new Date().getHours() + ':' + new Date().getMinutes()"
                 class="pl-10 pr-2"
                 type="text"

@@ -3,7 +3,12 @@
     type="{{ input_type ?? 'text' }}"
     name="{{ handle }}"
     value="{{ value }}"
+    x-model="form.{{ handle }}"
+    @change="form.validate('{{ handle }}')"
+    :aria-invalid="form.invalid('{{ handle }}')"
+    :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}') }"
     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:border-input focus:ring-background focus:ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}
     {{ autocomplete ?= 'autocomplete="{autocomplete}"' }}
     {{ placeholder ?= 'placeholder="{placeholder}"' }}
     {{ character_limit ?= 'maxlength="{character_limit}"' }}

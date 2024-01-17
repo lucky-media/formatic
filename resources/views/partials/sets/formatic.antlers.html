@@ -1,6 +1,6 @@
 <x-block form_size="{form_size}">
-    <div x-data="formatic({ validate_url: '{{ route:forms.validate :form="selected_form:handle" }}' })">
-        {{ form handle="{selected_form:handle}" js="alpine" x-ref="form" @submit.prevent="sendForm()" }}
+    {{ form:create :in="selected_form:handle" js="alpine:dynamic_form" attr:x-ref="form" files="true" }}
+        <div x-data="formatic()">
             <template x-if="success">
                 {{ if submit_options === 'thankyou_page' }}
                     <x-alert class="mb-5">
@@ -28,15 +28,15 @@
                     {{ /if }}
                     {{ if required_fields_text }}
                         <div class="my-4">
-                            <p class="text-destructive text-xs font-semibold">
+                            <p class="text-xs font-semibold text-destructive">
                                 {{ required_fields_text }}
                             </p>
                         </div>
                     {{ /if }}
                     {{ if !enable_multistep }}
                         <div class="sm:col-span-12">
-                            <x-button x-bind:disabled="sending" type="submit">
-                                <template x-if="sending">
+                            <x-button x-bind:disabled="form.processing" @click.prevent="submit" type="submit">
+                                <template x-if="form.processing">
                                     <x-spinner />
                                 </template>
                                 Submit
@@ -46,6 +46,6 @@
                     <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
                 </div>
             </template>
-        {{ /form }}
-    </div>
+        </div>
+    {{ /form:create }}
 </x-block>

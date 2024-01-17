@@ -1,9 +1,11 @@
 <div class="flex flex-col items-start" x-data="list" aria-describedby="{{ handle }}">
+    <x-input class="hidden" x-model="items ? form.{{ handle }} = items.map(item => item.value) : form.{{ handle }}" />
+
     <template x-for="(field, index) in items" :key="field.id">
-        <div class="flex flex-row space-x-2 items-center justify-between w-full mb-2 last:mb-0">
+        <div class="flex flex-row items-center justify-between w-full mb-2 space-x-2 last:mb-0">
             <x-input x-bind:id="'input-' + index" name="{handle}[]" x-model="field.value" />
 
-            <x-button @click="remove(field.id)" type="button" class="w-8 h-8 shrink-0 rounded-full" size="icon"
+            <x-button @click="remove(field.id)" type="button" class="w-8 h-8 rounded-full shrink-0" size="icon"
                 variant="outline" x-bind:aria-label="'Remove Input ' + index">
                 {{ svg src="trash" class="w-4 h-4 stroke-current text-muted-foreground dark:text-white" }}
                 <span class="sr-only">Remove</span>

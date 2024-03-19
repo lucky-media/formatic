@@ -1,5 +1,5 @@
 <x-block form_size="{form_size}">
-    {{ form:create :in="selected_form:handle" js="alpine:dynamic_form" attr:x-ref="form" files="true" }}
+    {{ form:create :in="selected_form:handle" js="alpine:form" attr:x-ref="form" files="true" }}
         <div x-data="formatic()">
             <template x-if="success">
                 {{ if submit_options === 'thankyou_page' }}

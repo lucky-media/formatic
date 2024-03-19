@@ -23,7 +23,16 @@ export const Formatic = () => ({
         this.form = this.$form(
             "post",
             this.$refs.form.getAttribute("action"),
-            JSON.parse(this.$refs.form.getAttribute("x-data")).dynamic_form
+            JSON.parse(this.$refs.form.getAttribute("x-data")).form,
+            {
+                headers: {
+                    "X-CSRF-Token": {
+                        toString: () =>
+                            this.$refs.form.querySelector('[name="_token"]')
+                                .value,
+                    },
+                },
+            }
         );
     },
 

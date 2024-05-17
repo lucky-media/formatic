@@ -28,5 +28,5 @@ export_paths:
   - postcss.config.js
   - README.md
 dependencies:
-  marcorieser/tailwind-merge-statamic: ^0.2.0
+  marcorieser/tailwind-merge-statamic: ^1.1.0
   stillat/antlers-components: ^2.0

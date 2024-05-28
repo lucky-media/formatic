@@ -13,24 +13,12 @@ tabs:
               validate:
                 - required
               display: 'Page Header'
-              instructions_position: above
-              listable: hidden
-              visibility: visible
-              input_type: text
-              antlers: false
-              hide_display: false
           -
             handle: page_description
             field:
-              antlers: false
               type: textarea
               display: 'Page Description'
-              icon: textarea
               instructions: 'Displayed under the title'
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
       -
         display: 'Form Builder'
         fields:
@@ -46,44 +34,24 @@ tabs:
             handle: logo
             field:
               max_files: 1
-              mode: list
               container: assets
-              restrict: false
-              allow_uploads: true
-              show_filename: true
-              show_set_alt: true
               type: assets
               display: 'Logo Light'
-              icon: assets
               instructions: |-
                 The light version of the Logo. 
                 It is displayed above the title.
               width: 50
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: logo_dark
             field:
               max_files: 1
-              mode: list
               container: assets
-              restrict: false
-              allow_uploads: true
-              show_filename: true
-              show_set_alt: true
               type: assets
               display: 'Logo Dark'
-              icon: assets
               instructions: |-
                 The dark version of the Logo. 
                 It is displayed above the title.
               width: 50
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: logo_size
             field:
@@ -94,11 +62,6 @@ tabs:
               default: medium
               type: button_group
               display: 'Logo Size'
-              icon: button_group
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: theme_color
             field:
@@ -119,12 +82,7 @@ tabs:
               default: '#e11d48'
               type: color
               display: 'Theme Color'
-              icon: color
               width: 25
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: theme_radius
             field:
@@ -137,13 +95,8 @@ tabs:
               default: 0.5rem
               type: button_group
               display: Radius
-              icon: button_group
               instructions: 'The border radius of the elements.'
               width: 75
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
       -
         display: Settings
         fields:
@@ -153,13 +106,8 @@ tabs:
               default: true
               type: toggle
               display: 'Darkmode Toggle'
-              icon: toggle
               instructions: 'Enable or Disable the Darkmode Toggle.'
               width: 50
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: theme_mode
             field:
@@ -169,12 +117,7 @@ tabs:
                 auto: Auto
               type: button_group
               display: 'Theme Mode'
-              icon: button_group
               instructions: 'Auto will respect the users preference.'
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
               if:
                 darkmode_toggle: 'equals false'
           -
@@ -187,62 +130,33 @@ tabs:
               default: medium
               type: button_group
               display: 'Form Size'
-              icon: button_group
               width: 50
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: required_fields_text
             field:
-              input_type: text
               default: '* Required fields'
-              antlers: false
               type: text
               display: 'Required Fields Text'
-              icon: text
               width: 50
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: protect_spacer
             field:
               type: spacer
               display: 'Protect Spacer'
-              icon: width
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: protected_page
             field:
-              default: false
               type: toggle
               display: 'Protected Page'
-              icon: toggle
               width: 33
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
           -
             handle: protect
             field:
-              input_type: text
               default: password
-              antlers: false
               type: text
               display: Protect
-              icon: text
               width: 66
-              listable: hidden
-              instructions_position: above
               visibility: read_only
-              hide_display: false
               if:
                 protected_page: 'equals true'
       -
@@ -257,25 +171,26 @@ tabs:
               default: thankyou_page
               type: button_group
               display: 'Submit Options'
-              icon: button_group
               instructions: 'Choose what to do after the Form is submitted.'
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
+              width: 50
+          -
+            handle: success_message_duration
+            field:
+              min: 1
+              default: 4
+              type: range
+              display: 'Success Message Duration'
+              instructions: 'The duration (in seconds) for which the success message remains visible after form submission.'
+              width: 50
+              if:
+                submit_options: 'equals thankyou_page'
+              max: 10
           -
             handle: submit_title
             field:
-              input_type: text
               default: 'Thank you. Your form is submitted.'
-              antlers: false
               type: text
               display: 'Submit Title'
-              icon: text
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
               validate:
                 - 'required_if:submit_options,thankyou_page'
               if:
@@ -291,46 +206,19 @@ tabs:
                 - removeformat
                 - quote
                 - anchor
-              smart_typography: false
-              save_html: false
-              inline: false
-              toolbar_mode: fixed
-              reading_time: false
-              word_count: false
-              fullscreen: true
               allow_source: false
-              enable_input_rules: true
-              enable_paste_rules: true
               remove_empty_nodes: false
-              antlers: false
-              link_noopener: false
-              link_noreferrer: false
-              target_blank: false
-              always_show_set_button: false
-              collapse: false
-              previews: true
               type: bard
               display: 'Submit Description'
-              icon: bard
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              hide_display: false
               if:
                 submit_options: 'equals thankyou_page'
           -
             handle: page_redirect_url
             field:
               input_type: url
-              antlers: false
               type: text
               display: 'Redirect URL'
-              icon: text
-              listable: hidden
-              instructions_position: above
-              visibility: visible
               duplicate: false
-              hide_display: false
               if:
                 submit_options: 'equals page_redirect'
               validate:
@@ -345,6 +233,7 @@ tabs:
             field:
               type: slug
               localizable: true
+              validate: 'max:200'
           -
             handle: parent
             field:

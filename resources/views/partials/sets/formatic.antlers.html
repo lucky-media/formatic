@@ -1,8 +1,8 @@
 <x-block form_size="{form_size}">
     {{ form:create :in="selected_form:handle" js="alpine:form" attr:x-ref="form" files="true" }}
-        <div x-data="formatic()">
-            <template x-if="success">
-                {{ if submit_options === 'thankyou_page' }}
+        <div x-data="formatic()" x-init="() => { success_message_duration = '{{ success_message_duration }}' }">
+            {{ if submit_options === 'thankyou_page' }}
+                <template x-if="success">
                     <x-alert class="mb-5">
                         {{ svg src="check" class="w-6 h-6" }}
                         <x-alert.title>{{ submit_title }}</x-alert.title>
@@ -12,11 +12,11 @@
                             </x-prose>
                         {{ /if }}
                     </x-alert>
-                {{ else }}
-                    <div class="hidden" x-init="() => { redirect_url = '{{ page_redirect_url }}' }">
-                    </div>
-                {{ /if }}
-            </template>
+                </template>
+            {{ else }}
+                <div class="hidden" x-init="() => { redirect_url = '{{ page_redirect_url }}' }">
+                </div>
+            {{ /if }}
             <template x-if="!success">
                 <div>
                     {{ if show_sections }}

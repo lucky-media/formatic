@@ -2,6 +2,7 @@ export const Formatic = () => ({
     steps: [],
     currentStep: 1,
     redirect_url: null,
+    success_message_duration: 4,
     submit_url: null,
     success: false,
     form: "",
@@ -57,17 +58,18 @@ export const Formatic = () => ({
                 this.form.errors = {};
                 this.success = true;
 
+                if (this.redirect_url) {
+                    this.success = false;
+                    return (window.location.href = this.redirect_url);
+                }
+
                 setTimeout(() => {
                     this.success = false;
-
-                    if (this.redirect_url) {
-                        window.location.href = this.redirect_url;
-                    }
 
                     if (this.isMultiStep()) {
                         location.reload();
                     }
-                }, 1000);
+                }, this.success_message_duration * 1000);
             }
         } catch (error) {
             if (error.response && error.response.data.errors) {

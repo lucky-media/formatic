@@ -19,6 +19,7 @@ required_fields_text: '* Required fields'
 protected_page: false
 submit_options: thankyou_page
 submit_title: 'Thank you. Your form is submitted.'
+success_message_duration: 4
 updated_by: c4788818-bedf-422a-ad20-bc93b90731e8
 updated_at: 1695393851
 ---

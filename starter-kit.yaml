@@ -9,6 +9,7 @@ export_paths:
   - content/collections/pages/employment-application.md
   - config/statamic/assets.php
   - config/statamic/protect.php
+  - resources/sites.yaml
   - resources/forms/employment_application.yaml
   - resources/fieldsets
   - resources/blueprints/globals/formatic.yaml
@@ -29,4 +30,4 @@ export_paths:
   - README.md
 dependencies:
   marcorieser/tailwind-merge-statamic: ^1.1.0
-  stillat/antlers-components: ^2.0
+  stillat/antlers-components: ^2.2.0

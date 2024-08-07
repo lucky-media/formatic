@@ -20,7 +20,6 @@ grid_classes:
                 @change="form.validate('{{ handle }}')"
                 :aria-invalid="form.invalid('{{ handle }}')"
                 class="h-4 w-4 bg-transparent text-primary shrink-0 rounded-sm border border-primary focus:border-input focus:ring-background focus:ring-offset-background  ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                {{ js_attributes }} 
                 {{ (old | in_array(value)) ?= 'checked' }}
                 >
             <x-label for="{{ handle }}-{{ index }}" class="ml-2">{{ label }}</x-label>

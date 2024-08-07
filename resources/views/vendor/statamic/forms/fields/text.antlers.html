@@ -12,6 +12,5 @@
     {{ autocomplete ?= 'autocomplete="{autocomplete}"' }}
     {{ placeholder ?= 'placeholder="{placeholder}"' }}
     {{ character_limit ?= 'maxlength="{character_limit}"' }}
-    {{ js_attributes }}
     {{ (validate|contains:required)  ?= 'required' }}
 >

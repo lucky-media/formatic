@@ -11,7 +11,6 @@
         @change="form.validate('{{ handle }}')"
         :aria-invalid="form.invalid('{{ handle }}')"
         :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}') }"
-        {{ js_attributes }}
         {{ (validate | contains:required) ?= 'required' }}
         class="w-full h-2 bg-secondary rounded-full appearance-none cursor-pointer accent-primary">
 

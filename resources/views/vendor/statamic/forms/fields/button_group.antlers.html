@@ -10,7 +10,7 @@
             :tabindex="form.{{ handle }} === '{{ option }}' ? 0 : -1">
 
             <input class="sr-only" id="radio-{{ option }}" name="{{ handle }}" value="{{ option }}" type="radio"
-                {{ js_attributes }} {{ (validate | contains:required) ?= 'required' }}>
+                {{ (validate | contains:required) ?= 'required' }}>
 
             <x-button as="label" for="radio-{{ option }}"
                 x-bind:class="form.{handle} === '{option}' && 'border border-primary'"

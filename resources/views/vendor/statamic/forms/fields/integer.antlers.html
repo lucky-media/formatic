@@ -19,7 +19,6 @@
             :class="{ 'border-red-600 focus-visible:border-red-600': form.invalid('{{ handle }}') }"
             {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}
             {{ old ? 'value="{old}"' : 'value="{value}"' }}
-            {{ js_attributes }}
             {{ (validate | contains:required) ?= 'required' }}
             class="absolute w-full left-0 bg-background font-semibold px-4 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none outline-none border-background focus:border-none"
             x-init="$watch('form.{{ handle }}', (value) => form.{{ handle }} = value < 0 ? 0 : value)"

@@ -24,24 +24,20 @@ export const Formatic = () => ({
         this.form = this.$form(
             "post",
             this.$refs.form.getAttribute("action"),
-            JSON.parse(this.$refs.form.getAttribute("x-data")).form,
-            {
-                headers: {
-                    "X-CSRF-Token": {
-                        toString: () =>
-                            this.$refs.form.querySelector('[name="_token"]')
-                                .value,
-                    },
-                },
-            }
+            JSON.parse(this.$refs.form.getAttribute("x-data")).form
         );
     },
 
     submit: async function () {
         try {
-            const response = await this.form.submit({
-                headers: { "Content-Type": "multipart/form-data" },
+            // Remove false values from form data
+            Object.keys(this.form).forEach((key) => {
+                if (this.form[key] === false) {
+                    delete this.form[key];
+                }
             });
+
+            const response = await this.form.submit();
 
             if (
                 response.status === 200 &&

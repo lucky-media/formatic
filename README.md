@@ -52,7 +52,7 @@ To compile all the assets, we use Vite with [Laravel](https://laravel.com/docs/9
 - `npm run build` - to compile assets for production.
 
 ## Commercial addon
-Please note that Formatic is a commercial starter kit. To use it in your project, you must purchase a license via the [Statamic Marketplace](https://statamic.com/starter-kits/your-company-name/formatic).
+Please note that Formatic is a commercial starter kit. To use it in your project, you must purchase a license via the [Statamic Marketplace](https://statamic.com/starter-kits/luckymedia/formatic).
 
 ## 🐞 Bugs and 💡 Feature Requests
 If you have any bugs to report or feature requests, please visit the issues tab in our repository.

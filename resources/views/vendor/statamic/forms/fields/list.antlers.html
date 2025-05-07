@@ -2,7 +2,7 @@
     <x-input class="hidden" x-model="items ? form.{{ handle }} = items.map(item => item.value) : form.{{ handle }}" />
 
     <template x-for="(field, index) in items" :key="field.id">
-        <div class="flex flex-row items-center justify-between w-full mb-2 space-x-2 last:mb-0">
+        <div class="flex flex-row items-center justify-between w-full mb-2 gap-x-2 last:mb-0">
             <x-input x-bind:id="'input-' + index" name="{handle}[]" x-model="field.value" />
 
             <x-button @click="remove(field.id)" type="button" class="w-8 h-8 rounded-full shrink-0" size="icon"

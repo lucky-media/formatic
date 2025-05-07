@@ -1,13 +1,15 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
 // import vue2 from '@vitejs/plugin-vue2';
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     plugins: [
+        tailwindcss(),
         laravel({
             input: [
-                'resources/css/site.css',
-                'resources/js/site.js',
+                "resources/css/site.css",
+                "resources/js/site.js",
 
                 // Control Panel assets.
                 // https://statamic.dev/extending/control-panel#adding-css-and-js-assets

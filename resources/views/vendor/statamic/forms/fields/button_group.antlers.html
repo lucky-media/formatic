@@ -3,7 +3,7 @@
     x-model="form.{{ handle }}"
     @change="form.validate('{{ handle }}')"
     :aria-invalid="form.invalid('{{ handle }}')"
-    class="flex items-center justify-start space-x-2">
+    class="flex items-center justify-start gap-x-2">
 
     {{ foreach:options as="option|label" }}
         <div id="form.radio-{{ option }}" role="radio" :aria-checked="form.{{ handle }} === '{{ option }}'"

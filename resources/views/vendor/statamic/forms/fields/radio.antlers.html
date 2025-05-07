@@ -1,5 +1,5 @@
 <fieldset 
-    class="flex {{ inline ? 'space-x-4': 'flex-col space-y-1' }}" 
+    class="flex {{ inline ? 'flex-row gap-x-4': 'flex-col gap-y-1' }}" 
     x-model="form.{{ handle }}"
     :aria-invalid="form.invalid('{{ handle }}')"
     {{ instructions_position == 'below' ?= 'aria-describedBy="{handle}-instructions"' }}>
@@ -13,7 +13,7 @@
                 name="{{ handle }}"
                 value="{{ option }}"
                 @change="form.validate('{{ handle }}')"
-                class="h-4 w-4 rounded-full bg-transparent border border-primary text-primary focus:border-input focus:ring-background focus:ring-offset-background ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                class="h-4 w-4 rounded-full bg-transparent border border-primary text-primary focus:border-input focus:ring-background focus:ring-offset-background ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 checked:bg-primary"
                 {{ (value == option) ?= 'checked' }}
                 {{ (validate|contains:required)  ?= 'required' }}
             >

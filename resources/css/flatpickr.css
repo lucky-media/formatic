@@ -11,7 +11,7 @@
     width: 307.875px;
     box-sizing: border-box;
     touch-action: manipulation;
-    @apply bg-card rounded-lg shadow-sm border;
+    @apply bg-card rounded-lg shadow-xs border;
 }
 
 .flatpickr-calendar.open,
